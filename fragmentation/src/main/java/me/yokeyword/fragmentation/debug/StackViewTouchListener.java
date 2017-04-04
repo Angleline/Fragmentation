@@ -1,11 +1,11 @@
 package me.yokeyword.fragmentation.debug;
 
+import android.support.v4.view.ViewCompat;
 import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * @Hide
- * Created by YoKey on 17/2/5.
+ * @Hide Created by YoKey on 17/2/5.
  */
 public class StackViewTouchListener implements View.OnTouchListener {
     private View stackView;
@@ -28,16 +28,16 @@ public class StackViewTouchListener implements View.OnTouchListener {
                 isClickState = true;
                 downX = X;
                 downY = Y;
-                dX = stackView.getX() - event.getRawX();
-                dY = stackView.getY() - event.getRawY();
+                dX = ViewCompat.getX(stackView) - event.getRawX();
+                dY = ViewCompat.getY(stackView) - event.getRawY();
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (Math.abs(X - downX) < clickLimitValue && Math.abs(Y - downY) < clickLimitValue && isClickState) {
                     isClickState = true;
                 } else {
                     isClickState = false;
-                    stackView.setX(event.getRawX() + dX);
-                    stackView.setY(event.getRawY() + dY);
+                    ViewCompat.setX(stackView, event.getRawX() + dX);
+                    ViewCompat.setY(stackView, event.getRawY() + dY);
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:

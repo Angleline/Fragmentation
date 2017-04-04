@@ -4,6 +4,7 @@ package me.yokeyword.fragmentation_swipeback;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,7 +43,7 @@ public class SwipeBackActivity extends SupportActivity {
 
     void onActivityCreate() {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getWindow().getDecorView().setBackgroundDrawable(null);
+        ViewCompat.setBackground(getWindow().getDecorView(), null);
         mSwipeBackLayout = new SwipeBackLayout(this);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mSwipeBackLayout.setLayoutParams(params);

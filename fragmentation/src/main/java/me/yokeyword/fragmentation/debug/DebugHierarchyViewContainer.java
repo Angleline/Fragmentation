@@ -1,8 +1,11 @@
 package me.yokeyword.fragmentation.debug;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -125,6 +128,7 @@ public class DebugHierarchyViewContainer extends ScrollView {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private TextView getTextView(DebugFragmentRecord fragmentRecord, int hierarchy) {
         TextView tvItem = new TextView(mContext);
 
@@ -139,7 +143,7 @@ public class DebugHierarchyViewContainer extends ScrollView {
         tvItem.setCompoundDrawablePadding(mPadding / 2);
 
         TypedArray a = mContext.obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
-        tvItem.setBackgroundDrawable(a.getDrawable(0));
+        ViewCompat.setBackground(tvItem,a.getDrawable(0));
         a.recycle();
 
         tvItem.setText(fragmentRecord.fragmentName);
