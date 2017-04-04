@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.IntDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
@@ -163,7 +164,7 @@ public class SwipeBackLayout extends FrameLayout {
      * Set a drawable used for edge shadow.
      */
     public void setShadow(int resId, int edgeFlag) {
-        setShadow(getResources().getDrawable(resId), edgeFlag);
+        setShadow(ContextCompat.getDrawable(getContext(), resId), edgeFlag);
     }
 
     /**
@@ -406,7 +407,7 @@ public class SwipeBackLayout extends FrameLayout {
                 return 1;
             }
             // SwipeBackActivity
-            if (mActivity != null && ((SwipeBackActivity)mActivity).swipeBackPriority()) {
+            if (mActivity != null && ((SwipeBackActivity) mActivity).swipeBackPriority()) {
                 return 1;
             }
             return 0;
